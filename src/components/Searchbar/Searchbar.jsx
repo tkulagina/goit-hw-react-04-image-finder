@@ -1,28 +1,19 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 
-export class Searchbar extends Component {
-  state = {
-    searchData: '',
+export function Searchbar({ onSubmit }) {
+  const [searchData, setSearchData] = useState('');
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    onSubmit(searchData);
   };
 
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state.searchData);
-  };
-
-  handleChange = evt => {
+  const handleChange = evt => {
     const { value } = evt.target;
-    this.setState({ searchData: value });
+    setSearchData(value);
   };
-
-  render() {
-    const { handleChange, handleSubmit } = this;
 
     return (
       <header className={css.searchbar}>
@@ -43,4 +34,7 @@ export class Searchbar extends Component {
       </header>
     );
   }
-}
+
+  Searchbar.protoType = {
+    onSubmit: PropTypes.func.isRequired,
+  };

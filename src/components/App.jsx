@@ -17,8 +17,7 @@ export function App() {
   const [largeImage, setLargeImage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     if (!page) {
@@ -41,8 +40,7 @@ export function App() {
       setError(error);
       setIsLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, searchData]);
+  }, [images, page, searchData]);
 
   const onSubmit = newSearchData => {
     if (newSearchData.trim() === '') {

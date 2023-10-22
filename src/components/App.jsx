@@ -40,6 +40,7 @@ export function App() {
       setError(error);
       setIsLoading(false);
     }
+    
   }, [images, page, searchData]);
 
   const onSubmit = newSearchData => {
